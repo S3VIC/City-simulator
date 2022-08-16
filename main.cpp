@@ -26,7 +26,11 @@ int main()
     if(decyzja == 'r')
     {
       Miasto M(N,p,nazwaMiasta);
-      M.getPozycjeKibicow();
+      //M.getPozycjeKibicow();
+      M.wyznaczCalkZadowKibicow();
+      M.wyznaczZadowMiasta();
+      int zadow = M.getZadowolenieMiasta();
+      std::cout << zadow << std::endl;
     }
 /*    else if (decyzja == 'd')
     {
