@@ -35,5 +35,24 @@ int Kibic::getZadowolenie(){
   return this->zadowolenie;
 }
 
+void Kibic::setX(double _X){
+  this->X = _X;
+}
+
+void Kibic::setY(double _Y){
+  this->Y = _Y;
+}
+
+void Kibic::zmienX(double _X){
+  this->X = this->X + _X;
+}
+
+void Kibic::zmienY(double _Y){
+  this->Y = this->Y + _Y;
+}
+
+void Kibic::resetZadow(){
+  this->zadowolenie = 0;
+}
 Kibic::~Kibic()
 {}

@@ -6,40 +6,41 @@
 
 int main()
 {
-    int N = 0;
-    double p = 0, R = 0, r = 0;
+    int liczbaMieszkancow = 0, liczbaEwolucji = 0;
+    double procent = 0;
     std::string nazwaMiasta = "";
-    char decyzja = ' ';
+//    char decyzja = ' ';
 
-    std::cout << "Losowe (r) tworzenie miasta, czy wczytanie danych z pliku (d)? : ";
-    std::cin >> decyzja;
-    std::cout << "Nazwa miasta: ";
+    printf("Nazwa miasta: ");
     std::cin >> nazwaMiasta;
-    std::cout << "Liczba mieszkańców: ";
-    std::cin >> N;
-    std::cout << "Procent mieszkańców jaki stanowią kibice czerwoni: ";
-    std::cin >> p;
-//    std::cout << "Max odległość przemieszczenia mieszkańca: ";
-//    std::cin >> R;
-//    std::cout << "Max odległość sprawdzania: ";
-//    std::cin >> r;
-    if(decyzja == 'r')
-    {
-      Miasto M(N,p,nazwaMiasta);
-      //M.getPozycjeKibicow();
+    printf("Liczba mieszkańców: ");
+    scanf("%d", &liczbaMieszkancow);
+    printf("Procent mieszkańców jaki stanowią kibice czerwoni: ");
+    scanf("%lf", &procent);
+    printf("Liczba ewolucji: ");
+    scanf("%d", &liczbaEwolucji);
+
+    if(true){
+      Miasto M(liczbaMieszkancow,procent,nazwaMiasta);
       M.wyznaczCalkZadowKibicow();
       M.wyznaczZadowMiasta();
       int zadow = M.getZadowolenieMiasta();
-      std::cout << zadow << std::endl;
-    }
-/*    else if (decyzja == 'd')
-    {
+      printf("Poziom zadowolenia: %d\n", zadow);
 
+      if(liczbaEwolucji != 0){
+        for(int i = 0; i < liczbaEwolucji; i++){
+          printf("Ewolucja %d:\n", i+1);
+          M.ewolucja();
+          M.resetZadowKibicow();
+          M.wyznaczCalkZadowKibicow();
+          M.wyznaczZadowMiasta();
+          zadow = M.getZadowolenieMiasta();
+          printf("Poziom zadowolenia: %d\n", zadow);
+        }
+      }
     }
-*/
- else
-    {
-      std::cout << "Nieprawidłowa decyzja!" << std::endl;
+  else{
+      printf("Nieprawidłowa decyzja!\n");
       std::exit(0);
     }
 

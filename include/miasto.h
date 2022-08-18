@@ -21,7 +21,9 @@ class Miasto
     void wyznaczCalkZadowKibicow();
     void wyznaczZadowKibica(Kibic& k1, Kibic& k2);
     void wyznaczZadowMiasta();
+    void resetZadowKibicow();
     int getZadowolenieMiasta();
+    void ewolucja();
     virtual ~Miasto();
 };
 

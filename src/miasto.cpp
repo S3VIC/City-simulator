@@ -26,35 +26,33 @@ void Miasto::getPozycjeKibicow(){
 }
 
 void Miasto::wyznaczZadowKibica(Kibic& k1, Kibic& k2){
-  double k1X = k1.getX();
-  double k1Y = k1.getY();
+  double k1Cord[] = {k1.getX(), k1.getY()};
 
-  double k2X = k2.getX();
-  double k2Y = k2.getY();
+  double k2Cord[] = {k2.getX(), k2.getY()};
 
-  double dystans = pow(k2X - k1X, 2) - pow(k2Y - k1Y, 2);
+  double dystans = pow(k2Cord[0] - k1Cord[0], 2) - pow(k2Cord[1] - k1Cord[1], 2);
   
   if(dystans <= 1 && k1.getKolor() == k2.getKolor())
     k1.zwiekszZadowolenie();
   
   else if (dystans <= 1 && k1.getKolor() != k2.getKolor())
     k1.zmniejszZadowolenie();
-  else { }
 }
 
 void Miasto::wyznaczCalkZadowKibicow(){
   for(int i = 0; i < this->liczbaMieszkancow; i++){
-    for(int j = 0; j < this->liczbaMieszkancow; j++){
-      if(i == j)
-        continue;
-      else{
+    for(int j = i+1; j < this->liczbaMieszkancow; j++){
         this->wyznaczZadowKibica(this->kibice[i], this->kibice[j]);
-      }
     }
   }
 }
 
 void Miasto::wyznaczZadowMiasta(){
+  
+  if(this->zadowolenieMiasta != 0)
+    this->zadowolenieMiasta = 0;
+
+
   for(int i = 0; i < this->liczbaMieszkancow; i++){
     this->zadowolenieMiasta += kibice[i].getZadowolenie();
   }
@@ -63,6 +61,24 @@ void Miasto::wyznaczZadowMiasta(){
 
 int Miasto::getZadowolenieMiasta(){
   return this->zadowolenieMiasta;
+}
+
+void Miasto::ewolucja(){
+  for(int i = 0; i < this->liczbaMieszkancow; i++){
+    if(this->kibice[i].getZadowolenie() <= 0){
+      double kierunek = 2 * rand()/RAND_MAX * M_PI;
+      this->kibice[i].zmienX(cos(kierunek));
+      this->kibice[i].zmienY(sin(kierunek));
+    }
+    else
+      continue;
+  }
+}
+
+void Miasto::resetZadowKibicow(){
+  for(int i = 0; i < this->liczbaMieszkancow; i++){
+    this->kibice[i].resetZadow();
+  }
 }
 Miasto::~Miasto(){
 }
