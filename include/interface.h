@@ -4,7 +4,7 @@
 class Interface{
   public:
   Interface();
-  void inicjalizuj();
+  // void inicjalizuj();
   void ustalWartParametrow(std::string* nazwaMiasta, int* liczbaMieszkancow, int* procent, int* liczbaEwolucji);
   void komunikatNazwaMiasta();
   void komunikatLiczbaMieszk();

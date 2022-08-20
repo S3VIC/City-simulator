@@ -1,9 +1,9 @@
 #include "interface.h"
 
 Interface::Interface(){}
-void Interface::inicjalizuj(){
+//void Interface::inicjalizuj(){
 //  this->ustalWartParametrow()
-}
+//}
 void Interface::ustalWartParametrow(std::string* nazwaMiasta, int* liczbaMieszkancow, int* procent, int* liczbaEwolucji){
   this->komunikatNazwaMiasta();
   std::cin >> *nazwaMiasta;
@@ -33,3 +33,5 @@ void Interface::komunikatLiczbaMieszk(){
 void Interface::komunikatNazwaMiasta(){
   printf("Nazwa miasta: ");
 }
+
+Interface::~Interface(){}

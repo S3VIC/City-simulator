@@ -2,23 +2,15 @@
 #include <iomanip>
 #include "kibic.h"
 #include "miasto.h"
-
+#include "interface.h"
 
 int main()
 {
-    int liczbaMieszkancow = 0, liczbaEwolucji = 0;
-    double procent = 0;
+    int liczbaMieszkancow = 0, liczbaEwolucji = 0, procent = 0; 
     std::string nazwaMiasta = "";
-//    char decyzja = ' ';
-
-    printf("Nazwa miasta: ");
-    std::cin >> nazwaMiasta;
-    printf("Liczba mieszkańców: ");
-    scanf("%d", &liczbaMieszkancow);
-    printf("Procent mieszkańców jaki stanowią kibice czerwoni: ");
-    scanf("%lf", &procent);
-    printf("Liczba ewolucji: ");
-    scanf("%d", &liczbaEwolucji);
+    Interface symulator;
+    
+    symulator.ustalWartParametrow(&nazwaMiasta, &liczbaMieszkancow, &procent, &liczbaEwolucji);
 
     if(true){
       Miasto M(liczbaMieszkancow,procent,nazwaMiasta);
