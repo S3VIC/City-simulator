@@ -1,37 +1,37 @@
 #include "miasto.h"
 
-Miasto::Miasto(std::string _nazwaMiasta)
-  : liczbaMieszkancow(0), procent(0), nazwaMiasta(_nazwaMiasta), zadowolenieMiasta(0){
+City::City(std::string _cityName)
+  : citizenNum(0), procent(0), cityName(_cityName), cityHappiness(0){
   }
 
 // Konstruktor miasta, przypisanie atrybutow, oraz wstepne zaludnienie (wypelnienie mieszkancami) miasta
-Miasto::Miasto(int _N, int _p, std::string _nazwaMiasta)
-  : liczbaMieszkancow(_N), procent(_p), nazwaMiasta(_nazwaMiasta), zadowolenieMiasta(0){
-  zaludnijMiasto();
+City::City(int _N, int _p, std::string _cityName)
+  : citizenNum(_N), procent(_p), cityName(_cityName), cityHappiness(0){
+  populateCity();
 }
 // losuje pozycje kibicow i dzieli ich na dwie grupy:
 // czerwonych i zielonych
-void Miasto::zaludnijMiasto(){
-  int liczbaCzerwonych = this->procent/100 * this->liczbaMieszkancow;
-  int liczbaZielonych = this->liczbaMieszkancow - liczbaCzerwonych;
+void City::populateCity(){
+  int liczbaCzerwonych = this->procent/100 * this->citizenNum;
+  int liczbaZielonych = this->citizenNum - liczbaCzerwonych;
 
   for(int i = 0; i < liczbaCzerwonych; i++)
-      this->kibice.push_back(Kibic('c'));
+      this->citizens.push_back(Kibic('c'));
 
   for(int k = 0; k < liczbaZielonych; k++)
-    this->kibice.push_back(Kibic('z'));
+    this->citizens.push_back(Kibic('z'));
 }
 
 // Zwraca pozycje poszczegolnych kibicow
-void Miasto::getPozycjeKibicow(){
-  for(unsigned int i = 0; i < this->kibice.size(); i++)
-    std::cout << kibice[i].getX() << "\t" << kibice[i].getY() << "\t" << kibice[i].getKolor() << std::endl;
+void City::getCitizensPos(){
+  for(unsigned int i = 0; i < this->citizens.size(); i++)
+    std::cout << citizens[i].getX() << "\t" << citizens[i].getY() << "\t" << citizens[i].getKolor() << std::endl;
 }
 
 // Sprawdza, czy kibice znajdują się odpowiednio blisko siebie, a także
 // decyduje czy w związku z tym jego zadowolenie maleje, rośnie,
 // czy nie zmienia się 
-void Miasto::wyznaczZadowKibica(Kibic& k1, Kibic& k2){
+void City::calcSinglCitizenHapp(Kibic& k1, Kibic& k2){
   double k1Cord[] = {k1.getX(), k1.getY()};
 
   double k2Cord[] = {k2.getX(), k2.getY()};
@@ -50,42 +50,42 @@ void Miasto::wyznaczZadowKibica(Kibic& k1, Kibic& k2){
 }
 
 // Przebiega po wszystkich parach kibicow wyznaczajac zadowolenie kazdego z nich
-void Miasto::wyznaczCalkZadowKibicow(){
-  for(int i = 0; i < this->liczbaMieszkancow; i++){
-    for(int j = i+1; j < this->liczbaMieszkancow; j++){
-        this->wyznaczZadowKibica(this->kibice[i], this->kibice[j]);
+void City::calcTotCitizensHapp(){
+  for(int i = 0; i < this->citizenNum; i++){
+    for(int j = i+1; j < this->citizenNum; j++){
+        this->calcSinglCitizenHapp(this->citizens[i], this->citizens[j]);
     }
   }
 }
 
 // Sumuje poziomy zadowolenia kibicow, a kolejno wyznacza srednia arytmetyczna
 // jako wskaznik ogolnego zadowolenia miasta
-void Miasto::wyznaczZadowMiasta(){
+void City::calcCityHapp(){
   
-  if(this->zadowolenieMiasta != 0)
-    this->zadowolenieMiasta = 0;
+  if(this->cityHappiness != 0)
+    this->cityHappiness = 0;
 
-  for(int i = 0; i < this->liczbaMieszkancow; i++){
-    this->zadowolenieMiasta += kibice[i].getZadowolenie();
+  for(int i = 0; i < this->citizenNum; i++){
+    this->cityHappiness += citizens[i].getZadowolenie();
   }
-  this->zadowolenieMiasta = this->zadowolenieMiasta / this->liczbaMieszkancow;
+  this->cityHappiness = this->cityHappiness / this->citizenNum;
 }
 
 // Zwraca zadowolenie miasta
-int Miasto::getZadowolenieMiasta(){
-  return this->zadowolenieMiasta;
+int City::getCityHapp(){
+  return this->cityHappiness;
 }
 
 // Przeprowadza ewolucje miasta
-void Miasto::ewolucja(){
-  for(int i = 0; i < this->liczbaMieszkancow; i++){
+void City::evolve(){
+  for(int i = 0; i < this->citizenNum; i++){
     // Sprawdza, czy zadowolenie kibica jest co najwyzej 0.
     // W takim przypadku losuje kat wzgledem OX. Na jego bazie w odpowiednim
     // kierunku zostaje przesunieta pozycja kibica (promien przesuniecia - 1)
-    if(this->kibice[i].getZadowolenie() <= 0){
+    if(this->citizens[i].getZadowolenie() <= 0){
       double kierunek = 2 * rand()/RAND_MAX * M_PI;
-      this->kibice[i].zmienX(cos(kierunek));
-      this->kibice[i].zmienY(sin(kierunek));
+      this->citizens[i].zmienX(cos(kierunek));
+      this->citizens[i].zmienY(sin(kierunek));
     }
     else
       continue;
@@ -93,10 +93,10 @@ void Miasto::ewolucja(){
 }
 
 // Przywraca zadowolenie kibicow do wartosci domyslnej - 0
-void Miasto::resetZadowKibicow(){
-  for(int i = 0; i < this->liczbaMieszkancow; i++){
-    this->kibice[i].resetZadow();
+void City::resetCitizenHapp(){
+  for(int i = 0; i < this->citizenNum; i++){
+    this->citizens[i].resetZadow();
   }
 }
-Miasto::~Miasto(){
+City::~City(){
 }

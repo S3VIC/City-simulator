@@ -13,20 +13,20 @@ int main()
     symulator.ustalWartParametrow(&nazwaMiasta, &liczbaMieszkancow, &procent, &liczbaEwolucji);
 
     if(true){
-      Miasto M(liczbaMieszkancow,procent,nazwaMiasta);
-      M.wyznaczCalkZadowKibicow();
-      M.wyznaczZadowMiasta();
-      int zadow = M.getZadowolenieMiasta();
+      City M(liczbaMieszkancow,procent,nazwaMiasta);
+      M.calcTotCitizensHapp();
+      M.calcCityHapp();
+      int zadow = M.getCityHapp();
       printf("Poziom zadowolenia: %d\n", zadow);
 
       if(liczbaEwolucji != 0){
         for(int i = 0; i < liczbaEwolucji; i++){
           printf("Ewolucja %d:\n", i+1);
-          M.ewolucja();
-          M.resetZadowKibicow();
-          M.wyznaczCalkZadowKibicow();
-          M.wyznaczZadowMiasta();
-          zadow = M.getZadowolenieMiasta();
+          M.evolve();
+          M.resetCitizenHapp();
+          M.calcTotCitizensHapp();
+          M.calcCityHapp();
+          zadow = M.getCityHapp();
           printf("Poziom zadowolenia: %d\n", zadow);
         }
       }

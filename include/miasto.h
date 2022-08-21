@@ -4,27 +4,27 @@
 #include "kibic.h"
 #include <cmath>
 
-class Miasto
+class City
 {
   private:
-    int liczbaMieszkancow;
+    int citizenNum;
     double procent;
-    std::string nazwaMiasta;
-    std::vector<Kibic> kibice;
-    int zadowolenieMiasta;
+    std::string cityName;
+    std::vector<Kibic> citizens;
+    int cityHappiness;
 
   public:
-    Miasto(std::string _nazwaMiasta);
-    Miasto(int _N, int _p, std::string _nazwaMiasta);
-    void zaludnijMiasto();
-    void getPozycjeKibicow();
-    void wyznaczCalkZadowKibicow();
-    void wyznaczZadowKibica(Kibic& k1, Kibic& k2);
-    void wyznaczZadowMiasta();
-    void resetZadowKibicow();
-    int getZadowolenieMiasta();
-    void ewolucja();
-    virtual ~Miasto();
+    City(std::string _cityName);
+    City(int _N, int _p, std::string _cityName);
+    void populateCity();
+    void getCitizensPos();
+    void calcTotCitizensHapp();
+    void calcSinglCitizenHapp(Kibic& k1, Kibic& k2);
+    void calcCityHapp();
+    void resetCitizenHapp();
+    int getCityHapp();
+    void evolve();
+    virtual ~City();
 };
 
 
