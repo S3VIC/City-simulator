@@ -1,71 +1,71 @@
 #include "kibic.h"
 
-Kibic::Kibic()
+Citizen::Citizen()
 {}
 // Konstruktor kibica, losowanie koordynatow, ustawianie poziomu zadowolenia na wartosc
 // domyslna
-Kibic::Kibic(const char _kolor)
-  : kolor(_kolor)
+Citizen::Citizen(const char _colour)
+  : colour(_colour)
 {
   this->X = 10. * rand()/RAND_MAX;
   this->Y = 10. * rand()/RAND_MAX;
-  this->zadowolenie = 0;
+  this->happiness = 0;
 }
 
 // zwraca oznaczenie kibica (przynaleznosc do jednej z 2 grup)
-const char Kibic::getKolor(){
-  return this->kolor;
+const char Citizen::getColour(){
+  return this->colour;
 }
 
 // zwraca koordynat X
-const double Kibic::getX(){
+const double Citizen::getX(){
   return this->X;
 }
 
 // zwraca koordynat Y
-const double Kibic::getY(){
+const double Citizen::getY(){
   return this->Y;
 }
 
 // inkrementacja poziomu zadowolenia kibica
-void Kibic::zwiekszZadowolenie(){
-  this->zadowolenie ++;
+void Citizen::increaseHapp(){
+  this->happiness ++;
 }
 
 // dekrementacja poziomu zadowolenia kibica
-void Kibic::zmniejszZadowolenie(){
-  this->zadowolenie --;
+void Citizen::decreaseHapp(){
+  this->happiness --;
 }
 
 // zwraca wartosc poziomu zadowolenia kibica
-int Kibic::getZadowolenie(){
-  return this->zadowolenie;
+int Citizen::getHapp(){
+  return this->happiness;
 }
 
 // ustawia koordynat X
-void Kibic::setX(double _X){
+void Citizen::setX(double _X){
   this->X = _X;
 }
 
 // ustawia koordynat Y
-void Kibic::setY(double _Y){
+void Citizen::setY(double _Y){
   this->Y = _Y;
 }
 
 // zmienia koordynat X o okreslona wartosc (podczas ewolucji miasta)
-void Kibic::zmienX(double _X){
+void Citizen::zmienX(double _X){
   this->X = this->X + _X;
 }
 
 // zmienia koordynat Y o okreslona wartosc (podczas ewolucji miasta)
-void Kibic::zmienY(double _Y){
+void Citizen::zmienY(double _Y){
   this->Y = this->Y + _Y;
 }
 
 // przywraca zadowolenie kibica do wartosci domyslnej
-void Kibic::resetZadow(){
-  this->zadowolenie = 0;
+void Citizen::resetHapp(){
+  this->happiness = 0;
 }
 
-Kibic::~Kibic()
+Citizen::~Citizen()
 {}

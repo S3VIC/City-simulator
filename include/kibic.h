@@ -1,27 +1,27 @@
 #pragma once
 #include<random>
 
-class Kibic
+class Citizen
 {
   private:
-    char kolor;
+    char colour;
     double X, Y;
-    int zadowolenie;
+    int happiness;
   public:
-    Kibic();
-    Kibic(const char _kolor);
+    Citizen();
+    Citizen(const char _colour);
     const double getX();
     const double getY();
     void setX(double _X);
     void setY(double _Y);
     void zmienX(double _X);
     void zmienY(double _Y);
-    const char getKolor();
-    void zwiekszZadowolenie();
-    void zmniejszZadowolenie();
-    void resetZadow();
-    int getZadowolenie();
-    virtual ~Kibic();
+    const char getColour();
+    void increaseHapp();
+    void decreaseHapp();
+    void resetHapp();
+    int getHapp();
+    virtual ~Citizen();
 };
 
 

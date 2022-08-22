@@ -6,33 +6,33 @@
 
 int main()
 {
-    int liczbaMieszkancow = 0, liczbaEwolucji = 0, procent = 0; 
-    std::string nazwaMiasta = "";
-    Interface symulator;
+    int citizensNum = 0, evolutionNum = 0, procent = 0; 
+    std::string cityName = "";
+    Interface simulator;
     
-    symulator.ustalWartParametrow(&nazwaMiasta, &liczbaMieszkancow, &procent, &liczbaEwolucji);
+    simulator.ustalWartParametrow(&cityName, &citizensNum, &procent, &evolutionNum);
 
     if(true){
-      City M(liczbaMieszkancow,procent,nazwaMiasta);
+      City M(citizensNum,procent,cityName);
       M.calcTotCitizensHapp();
       M.calcCityHapp();
-      int zadow = M.getCityHapp();
-      printf("Poziom zadowolenia: %d\n", zadow);
+      int happ = M.getCityHapp();
+      printf("Happiness level: %d\n", happ);
 
-      if(liczbaEwolucji != 0){
-        for(int i = 0; i < liczbaEwolucji; i++){
-          printf("Ewolucja %d:\n", i+1);
+      if(evolutionNum != 0){
+        for(int i = 0; i < evolutionNum; i++){
+          printf("Evolution #%d:\n", i+1);
           M.evolve();
           M.resetCitizenHapp();
           M.calcTotCitizensHapp();
           M.calcCityHapp();
-          zadow = M.getCityHapp();
-          printf("Poziom zadowolenia: %d\n", zadow);
+          happ = M.getCityHapp();
+          printf("Happiness level: %d\n", happ);
         }
       }
     }
   else{
-      printf("Nieprawidłowa decyzja!\n");
+      printf("Unrecognized decision!\n");
       std::exit(0);
     }
 

@@ -10,7 +10,7 @@ class City
     int citizenNum;
     double procent;
     std::string cityName;
-    std::vector<Kibic> citizens;
+    std::vector<Citizen> citizens;
     int cityHappiness;
 
   public:
@@ -19,7 +19,7 @@ class City
     void populateCity();
     void getCitizensPos();
     void calcTotCitizensHapp();
-    void calcSinglCitizenHapp(Kibic& k1, Kibic& k2);
+    void calcSinglCitizenHapp(Citizen& k1, Citizen& k2);
     void calcCityHapp();
     void resetCitizenHapp();
     int getCityHapp();
