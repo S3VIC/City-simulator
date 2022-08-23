@@ -14,6 +14,7 @@ class Interface{
   void redPercentageMessage();
   void evolutionsNumMessage();
   void saveToFile(City& _city);
+  void plotData();
 
   ~Interface();
 };

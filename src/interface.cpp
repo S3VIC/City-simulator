@@ -53,4 +53,14 @@ void Interface::saveToFile(City& _city ){
   red.close();
 }
 
+void Interface::plotData(){
+  std::ofstream script;
+  script.open("script.gp");
+  if(script.good()){
+    script << "plot \"red.txt\" with points pointtype 7,\"green.txt\" with points pointtype 7 \npause -1\"Press ENTER\"";
+    script.close();
+    system("gnuplot script.gp");
+  }
+}
+
 Interface::~Interface(){}

@@ -15,6 +15,7 @@ int main()
     if(true){
       City M(citizensNum,procent,cityName);
       simulator.saveToFile(M);
+      simulator.plotData();
       M.calcTotCitizensHapp();
       M.calcCityHapp();
       int happ = M.getCityHapp();
@@ -36,6 +37,6 @@ int main()
       printf("Unrecognized decision!\n");
       std::exit(0);
     }
-
+//    std::system("pwd");
     return 0;
 }
