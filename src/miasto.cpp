@@ -16,10 +16,10 @@ void City::populateCity(){
   int greenNum = this->citizenNum - redNum;
 
   for(int i = 0; i < redNum; i++)
-      this->citizens.push_back(Citizen('c'));
+      this->citizens.push_back(Citizen('r'));
 
   for(int k = 0; k < greenNum; k++)
-    this->citizens.push_back(Citizen('z'));
+    this->citizens.push_back(Citizen('g'));
 }
 
 // Zwraca pozycje poszczegolnych kibicow
@@ -98,5 +98,14 @@ void City::resetCitizenHapp(){
     this->citizens[i].resetHapp();
   }
 }
+
+int City::getCitizensNum(){
+  return this->citizenNum;
+}
+
+std::vector<Citizen> City::getCitizens(){
+  return this->citizens;
+}
+
 City::~City(){
 }

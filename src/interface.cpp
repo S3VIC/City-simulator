@@ -1,37 +1,56 @@
 #include "interface.h"
 
+
 Interface::Interface(){}
 //void Interface::inicjalizuj(){
 //  this->ustalWartParametrow()
 //}
-void Interface::ustalWartParametrow(std::string* nazwaMiasta, int* liczbaMieszkancow, int* procent, int* liczbaEwolucji){
-  this->komunikatNazwaMiasta();
-  std::cin >> *nazwaMiasta;
+void Interface::setParameters(std::string* cityName, int* citizensNum, int* procent, int* evolutionNum){
+  this->cityNameMessage();
+  std::cin >> *cityName;
 
-  this->komunikatLiczbaMieszk();
-  scanf("%d", liczbaMieszkancow);
+  this->citizensNumMessage();
+  scanf("%d", citizensNum);
 
-  this->komunikatProcentCzerw();
+  this->redPercentageMessage();
   scanf("%d", procent);
 
-  this->komunikatLiczbaEwol();
-  scanf("%d", liczbaEwolucji);
+  this->evolutionsNumMessage();
+  scanf("%d", evolutionNum);
 }
 
-void Interface::komunikatLiczbaEwol(){
-    printf("Liczba ewolucji: ");
+void Interface::evolutionsNumMessage(){
+    printf("Number of evolutions: ");
 }
 
-void Interface::komunikatProcentCzerw(){
-  printf("Procent mieszkańców jaki stanowią kibice czerwoni: ");
+void Interface::redPercentageMessage(){
+  printf("Red citizens percentage: ");
 }
 
-void Interface::komunikatLiczbaMieszk(){
-  printf("Liczba mieszkańców: ");
+void Interface::citizensNumMessage(){
+  printf("Citizens number: ");
 }
 
-void Interface::komunikatNazwaMiasta(){
-  printf("Nazwa miasta: ");
+void Interface::cityNameMessage(){
+  printf("City name: ");
+}
+
+void Interface::saveToFile(City& _city ){
+  std::ofstream green;
+  std::ofstream red;
+  green.open("green.txt");
+  red.open("red.txt");
+  if(green.good() && red.good()){
+    for(int i = 0; i < _city.getCitizensNum(); i++)
+    {
+      if(_city.getCitizens()[i].getColour() == 'r')
+        red << _city.getCitizens()[i].getX() << "\t" << _city.getCitizens()[i].getY() << std::endl;
+      else if(_city.getCitizens()[i].getColour() == 'g')
+        green << _city.getCitizens()[i].getX() << "\t" << _city.getCitizens()[i].getY() << std::endl;
+    } 
+  }
+  green.close();
+  red.close();
 }
 
 Interface::~Interface(){}

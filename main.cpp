@@ -10,10 +10,11 @@ int main()
     std::string cityName = "";
     Interface simulator;
     
-    simulator.ustalWartParametrow(&cityName, &citizensNum, &procent, &evolutionNum);
+    simulator.setParameters(&cityName, &citizensNum, &procent, &evolutionNum);
 
     if(true){
       City M(citizensNum,procent,cityName);
+      simulator.saveToFile(M);
       M.calcTotCitizensHapp();
       M.calcCityHapp();
       int happ = M.getCityHapp();

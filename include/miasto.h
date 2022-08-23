@@ -23,6 +23,8 @@ class City
     void calcCityHapp();
     void resetCitizenHapp();
     int getCityHapp();
+    int getCitizensNum();
+    std::vector<Citizen> getCitizens();
     void evolve();
     virtual ~City();
 };
