@@ -1,4 +1,7 @@
 # SymulatorMiasta
+
+NOTE: Temporarily not fully functional due to simulation implementation changes.
+
 Projekt tworzony w ramach przedmiotu Programowanie IN na kierunku Inżynieria Nanostruktur.
 Program jest symulacją miasta, w której tworzone jest wirtualne miasto z określoną przez użytkownika liczbą kibiców
 (mieszkańców) podzielonych na dwa "kluby" - czerwoni oraz zieloni. Użytkownik może również zdefiniować w jakiej proporcji względem siebie poszczególni kibice występują w symulowanym mieście poprzez zdefiniowanie czesci jaką stanowią kibice czerwoni.
