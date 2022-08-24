@@ -5,8 +5,8 @@ City::City(std::string _cityName)
   }
 
 // Konstruktor miasta, przypisanie atrybutow, oraz wstepne zaludnienie (wypelnienie mieszkancami) miasta
-City::City(int _N, int _p, std::string _cityName)
-  : citizenNum(_N), procent(_p), cityName(_cityName), cityHappiness(0){
+City::City(int _N, int _p, std::string _cityName, int _evolutionNum)
+  : citizenNum(_N), procent(_p), cityName(_cityName), cityHappiness(0), evolutionNum(_evolutionNum){
   populateCity();
 }
 // losuje pozycje kibicow i dzieli ich na dwie grupy:

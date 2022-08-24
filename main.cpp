@@ -6,12 +6,15 @@
 
 int main()
 {
-    int citizensNum = 0, evolutionNum = 0, procent = 0; 
-    std::string cityName = "";
+    //int citizensNum = 0, evolutionNum = 0, procent = 0; 
+    //std::string cityName = "";
     Interface simulator;
+    City myCity = simulator.initializeCity();
     
-    simulator.setParameters(&cityName, &citizensNum, &procent, &evolutionNum);
 
+    
+    //simulator.setParameters(&cityName, &citizensNum, &procent, &evolutionNum);
+    /*
     if(true){
       City M(citizensNum,procent,cityName);
       simulator.saveToFile(M);
@@ -38,5 +41,5 @@ int main()
       std::exit(0);
     }
 //    std::system("pwd");
-    return 0;
+*/    return 0;
 }

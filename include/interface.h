@@ -7,14 +7,15 @@
 class Interface{
   public:
   Interface();
-  // void inicjalizuj();
   void setParameters(std::string* nazwaMiasta, int* liczbaMieszkancow, int* procent, int* liczbaEwolucji);
   void cityNameMessage();
+  void startSimulation();
   void citizensNumMessage();
   void redPercentageMessage();
   void evolutionsNumMessage();
   void saveToFile(City& _city);
   void plotData();
-
+  void displayWelcomeScreen();
+  City initializeCity();
   ~Interface();
 };

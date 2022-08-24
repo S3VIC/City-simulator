@@ -2,9 +2,27 @@
 
 
 Interface::Interface(){}
-//void Interface::inicjalizuj(){
-//  this->ustalWartParametrow()
-//}
+City Interface::initializeCity(){
+  std::string cityName = "";
+  int citizensNum = 0, procent = 0, evolutionNum = 0;
+  setParameters(&cityName, &citizensNum, &procent, &evolutionNum);
+  City _city(citizensNum, procent, cityName, evolutionNum);
+  return _city;
+}
+void Interface::startSimulation(){
+  system("clear");
+  this->displayWelcomeScreen();
+  int decision = 0;
+  scanf("%d", &decision);
+  if(decision == 1){
+    
+    
+  }
+  else if(decision == 2){
+    exit(0);
+  }
+}
+
 void Interface::setParameters(std::string* cityName, int* citizensNum, int* procent, int* evolutionNum){
   this->cityNameMessage();
   std::cin >> *cityName;
@@ -18,7 +36,9 @@ void Interface::setParameters(std::string* cityName, int* citizensNum, int* proc
   this->evolutionsNumMessage();
   scanf("%d", evolutionNum);
 }
-
+void Interface::displayWelcomeScreen(){
+  printf("##### City Simulator #####\n1. Initialize city\n2. exit");
+}
 void Interface::evolutionsNumMessage(){
     printf("Number of evolutions: ");
 }
