@@ -6,7 +6,7 @@
 class City
 {
   private:
-    int citizenNum;
+    int citizensNum;
     double procent;
     std::string cityName;
     std::vector<Citizen> citizens;
@@ -22,10 +22,10 @@ class City
     void evolve();
     
     //  Setters
-    void setName(std::string _cityName);
-    void setCitizensNum(int _citizensNum);
-    void setProcent(double _procent);
-    void setEvolutionNum(int evolutionNum);
+    void setName(const std::string _cityName);
+    void setCitizensNum(const int _citizensNum);
+    void setProcent(const double _procent);
+  
     void resetCitizenHapp();
     
     //  Getters

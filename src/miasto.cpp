@@ -1,19 +1,19 @@
 #include "miasto.h"
 
 City::City(std::string _cityName)
-  : citizenNum(0), procent(0), cityName(_cityName), cityHappiness(0){
+  : citizensNum(0), procent(0), cityName(_cityName), cityHappiness(0){
   }
 
 // Konstruktor miasta, przypisanie atrybutow, oraz wstepne zaludnienie (wypelnienie mieszkancami) miasta
 City::City(int _N, int _p, std::string _cityName)
-  : citizenNum(_N), procent(_p), cityName(_cityName), cityHappiness(0){
+  : citizensNum(_N), procent(_p), cityName(_cityName), cityHappiness(0){
   populateCity();
 }
 // losuje pozycje kibicow i dzieli ich na dwie grupy:
 // czerwonych i zielonych
 void City::populateCity(){
-  int redNum = this->procent/100 * this->citizenNum;
-  int greenNum = this->citizenNum - redNum;
+  int redNum = this->procent/100 * this->citizensNum;
+  int greenNum = this->citizensNum - redNum;
 
   for(int i = 0; i < redNum; i++)
       this->citizens.push_back(Citizen('r'));
@@ -51,8 +51,8 @@ void City::calcSinglCitizenHapp(Citizen& k1, Citizen& k2){
 
 // Przebiega po wszystkich parach kibicow wyznaczajac zadowolenie kazdego z nich
 void City::calcTotCitizensHapp(){
-  for(int i = 0; i < this->citizenNum; i++){
-    for(int j = i+1; j < this->citizenNum; j++){
+  for(int i = 0; i < this->citizensNum; i++){
+    for(int j = i+1; j < this->citizensNum; j++){
         this->calcSinglCitizenHapp(this->citizens[i], this->citizens[j]);
     }
   }
@@ -65,10 +65,10 @@ void City::calcCityHapp(){
   if(this->cityHappiness != 0)
     this->cityHappiness = 0;
 
-  for(int i = 0; i < this->citizenNum; i++){
+  for(int i = 0; i < this->citizensNum; i++){
     this->cityHappiness += citizens[i].getHapp();
   }
-  this->cityHappiness = this->cityHappiness / this->citizenNum;
+  this->cityHappiness = this->cityHappiness / this->citizensNum;
 }
 
 // Zwraca zadowolenie miasta
@@ -78,7 +78,7 @@ int City::getCityHapp(){
 
 // Przeprowadza ewolucje miasta
 void City::evolve(){
-  for(int i = 0; i < this->citizenNum; i++){
+  for(int i = 0; i < this->citizensNum; i++){
     // Sprawdza, czy zadowolenie kibica jest co najwyzej 0.
     // W takim przypadku losuje kat wzgledem OX. Na jego bazie w odpowiednim
     // kierunku zostaje przesunieta pozycja kibica (promien przesuniecia - 1)
@@ -94,18 +94,29 @@ void City::evolve(){
 
 // Przywraca zadowolenie kibicow do wartosci domyslnej - 0
 void City::resetCitizenHapp(){
-  for(int i = 0; i < this->citizenNum; i++){
+  for(int i = 0; i < this->citizensNum; i++){
     this->citizens[i].resetHapp();
   }
 }
 
 int City::getCitizensNum(){
-  return this->citizenNum;
+  return this->citizensNum;
 }
 
 std::vector<Citizen> City::getCitizens(){
   return this->citizens;
 }
+// Setters 
+void City::setName(const std::string _cityName){
+  this->cityName = _cityName;
+}
 
+void City::setCitizensNum(const int _citizensNum){
+  this->citizensNum = _citizensNum;
+}
+
+void City::setProcent(const double _procent){
+  this->procent = _procent;
+}
 City::~City(){
 }
