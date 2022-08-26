@@ -1,8 +1,7 @@
 #pragma once
-#include <iostream>
+#include<iostream>
 #include <vector>
 #include "kibic.h"
-#include <cmath>
 
 class City
 {
@@ -11,11 +10,11 @@ class City
     double procent;
     std::string cityName;
     std::vector<Citizen> citizens;
-    int cityHappiness, evolutionNum;
+    int cityHappiness;
 
   public:
     City(std::string _cityName);
-    City(int _N, int _p, std::string _cityName, int _evolutionNum);
+    City(int _N, int _p, std::string _cityName);
     void populateCity();
     void calcTotCitizensHapp();
     void calcSinglCitizenHapp(Citizen& k1, Citizen& k2);

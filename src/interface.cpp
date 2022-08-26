@@ -1,42 +1,12 @@
 #include "interface.h"
 
 
-Interface::Interface(){}
-City Interface::initializeCity(){
-  std::string cityName = "";
-  int citizensNum = 0, procent = 0, evolutionNum = 0;
-  setParameters(&cityName, &citizensNum, &procent, &evolutionNum);
-  City _city(citizensNum, procent, cityName, evolutionNum);
-  return _city;
-}
-void Interface::startSimulation(){
-  system("clear");
+Interface::Interface(){
   this->displayWelcomeScreen();
-  int decision = 0;
-  scanf("%d", &decision);
-  if(decision == 1){
-    
-    
-  }
-  else if(decision == 2){
-    exit(0);
-  }
 }
 
-void Interface::setParameters(std::string* cityName, int* citizensNum, int* procent, int* evolutionNum){
-  this->cityNameMessage();
-  std::cin >> *cityName;
-
-  this->citizensNumMessage();
-  scanf("%d", citizensNum);
-
-  this->redPercentageMessage();
-  scanf("%d", procent);
-
-  this->evolutionsNumMessage();
-  scanf("%d", evolutionNum);
-}
 void Interface::displayWelcomeScreen(){
+  system("clear");
   printf("##### City Simulator #####\n1. Initialize city\n2. exit");
 }
 void Interface::evolutionsNumMessage(){
@@ -55,7 +25,27 @@ void Interface::cityNameMessage(){
   printf("City name: ");
 }
 
-void Interface::saveToFile(City& _city ){
+void Interface::initialDecision(int *decision){ 
+  printf("\nSelect an option: ");
+  scanf("%d", decision);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*void Interface::saveToFile(City& _city ){
   std::ofstream green;
   std::ofstream red;
   green.open("green.txt");
@@ -72,8 +62,8 @@ void Interface::saveToFile(City& _city ){
   green.close();
   red.close();
 }
-
-void Interface::plotData(){
+*/
+/*void Interface::plotData(){
   std::ofstream script;
   script.open("script.gp");
   if(script.good()){
@@ -82,5 +72,5 @@ void Interface::plotData(){
     system("gnuplot script.gp");
   }
 }
-
+*/
 Interface::~Interface(){}

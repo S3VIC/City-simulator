@@ -1,15 +1,18 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 #include "kibic.h"
 #include "miasto.h"
 #include "interface.h"
+#include "simulator.h"
 
 int main()
 {
     //int citizensNum = 0, evolutionNum = 0, procent = 0; 
     //std::string cityName = "";
-    Interface simulator;
-    City myCity = simulator.initializeCity();
+    Simulator mySimulator;
+    mySimulator.startSimulation();
+    
     
 
     
