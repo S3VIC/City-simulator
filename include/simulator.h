@@ -6,12 +6,13 @@
 
 class Simulator{
   private:
-    int evolutionNum;
+    int evolutionsNum;
   
   public:
     Simulator();
-    City initializeCity();
-    void startSimulation();
+
+    void start();
+    void beginSimulation(City* _myCity, Interface* _myInterface);
     void proceedEvolution();
     void setCityParams(Interface *myInterface, City *myCity);
 

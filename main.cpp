@@ -11,7 +11,7 @@ int main()
     //int citizensNum = 0, evolutionNum = 0, procent = 0; 
     //std::string cityName = "";
     Simulator mySimulator;
-    mySimulator.startSimulation();
+    mySimulator.start();
     
     
 
