@@ -1,8 +1,8 @@
 #pragma once
 
 #include "miasto.h"
-#include "kibic.h"
 #include "interface.h"
+#include <fstream>
 
 class Simulator{
   private:
@@ -15,7 +15,8 @@ class Simulator{
     void beginSimulation(City* _myCity, Interface* _myInterface);
     void proceedEvolution(City* _myCity, int &evolutionNumber);
     void setCityParams(Interface *myInterface, City *myCity);
-    
+    void saveToFile(City &myCity);
+    void plotData();
 
     // Setters
     void setEvolutionNum();

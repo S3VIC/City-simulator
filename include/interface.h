@@ -1,7 +1,5 @@
 #pragma once
 #include<iostream>
-#include "../include/miasto.h"
-#include "../include/kibic.h"
 
 class Interface{
   
