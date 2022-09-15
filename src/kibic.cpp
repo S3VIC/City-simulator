@@ -1,9 +1,9 @@
-#include "kibic.h"
+#include "../include/kibic.h"
 
 Citizen::Citizen()
 {}
-// Konstruktor kibica, losowanie koordynatow, ustawianie poziomu zadowolenia na wartosc
-// domyslna
+// Citizen constructor - assigns random coordinates to created citizen instance
+// and sets its' initial happiness level to default value - 0
 Citizen::Citizen(const char _colour)
   : colour(_colour)
 {
@@ -12,57 +12,57 @@ Citizen::Citizen(const char _colour)
   this->happiness = 0;
 }
 
-// zwraca oznaczenie kibica (przynaleznosc do jednej z 2 grup)
+// returns type of citizen
 const char Citizen::getColour(){
   return this->colour;
 }
 
-// zwraca koordynat X
+// returns X coordinate
 const double Citizen::getX(){
   return this->X;
 }
 
-// zwraca koordynat Y
+// returns Y coordinate
 const double Citizen::getY(){
   return this->Y;
 }
 
-// inkrementacja poziomu zadowolenia kibica
+// increments citizen happiness level
 void Citizen::increaseHapp(){
   this->happiness ++;
 }
 
-// dekrementacja poziomu zadowolenia kibica
+// decrements citizen happiness level
 void Citizen::decreaseHapp(){
   this->happiness --;
 }
 
-// zwraca wartosc poziomu zadowolenia kibica
+// returns citizen happiness level
 int Citizen::getHapp(){
   return this->happiness;
 }
 
-// ustawia koordynat X
+// sets X coordinate
 void Citizen::setX(double _X){
   this->X = _X;
 }
 
-// ustawia koordynat Y
+// setes Y coordinate
 void Citizen::setY(double _Y){
   this->Y = _Y;
 }
 
-// zmienia koordynat X o okreslona wartosc (podczas ewolucji miasta)
-void Citizen::zmienX(double _X){
+// changes X coordinate 
+void Citizen::changeX(double _X){
   this->X = this->X + _X;
 }
 
-// zmienia koordynat Y o okreslona wartosc (podczas ewolucji miasta)
-void Citizen::zmienY(double _Y){
+// changes Y coordinate
+void Citizen::changeY(double _Y){
   this->Y = this->Y + _Y;
 }
 
-// przywraca zadowolenie kibica do wartosci domyslnej
+// sets happiness level to its initial level - 0
 void Citizen::resetHapp(){
   this->happiness = 0;
 }

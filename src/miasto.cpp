@@ -1,4 +1,4 @@
-#include "miasto.h"
+#include "../include/miasto.h"
 
 City::City(std::string _cityName)
   : citizensNum(0), procent(0), cityName(_cityName), cityHappiness(0){
@@ -71,21 +71,21 @@ void City::calcCityHapp(){
   this->cityHappiness = this->cityHappiness / this->citizensNum;
 }
 
-// Zwraca zadowolenie miasta
+// Returns city happiness
 int City::getCityHapp(){
   return this->cityHappiness;
 }
 
-// Przeprowadza ewolucje miasta
+// Proceeds city evolution
 void City::evolve(){
   for(int i = 0; i < this->citizensNum; i++){
-    // Sprawdza, czy zadowolenie kibica jest co najwyzej 0.
-    // W takim przypadku losuje kat wzgledem OX. Na jego bazie w odpowiednim
-    // kierunku zostaje przesunieta pozycja kibica (promien przesuniecia - 1)
+    // Checks whether citizen happiness is greater or equal 0.
+    // If it does not match this condition the citizen is being moved 
+    // in a random direction at a total distance of 1.
     if(this->citizens[i].getHapp() <= 0){
-      double kierunek = 2 * rand()/RAND_MAX * M_PI;
-      this->citizens[i].zmienX(cos(kierunek));
-      this->citizens[i].zmienY(sin(kierunek));
+      double kierunek = 2. * rand()/RAND_MAX * M_PI;
+      this->citizens[i].changeX(cos(kierunek));
+      this->citizens[i].changeY(sin(kierunek));
     }
     else
       continue;

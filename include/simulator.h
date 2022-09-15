@@ -13,8 +13,9 @@ class Simulator{
 
     void start();
     void beginSimulation(City* _myCity, Interface* _myInterface);
-    void proceedEvolution();
+    void proceedEvolution(City* _myCity, int &evolutionNumber);
     void setCityParams(Interface *myInterface, City *myCity);
+    
 
     // Setters
     void setEvolutionNum();

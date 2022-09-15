@@ -14,8 +14,8 @@ class Citizen
     const double getY();
     void setX(double _X);
     void setY(double _Y);
-    void zmienX(double _X);
-    void zmienY(double _Y);
+    void changeX(double _X);
+    void changeY(double _Y);
     const char getColour();
     void increaseHapp();
     void decreaseHapp();

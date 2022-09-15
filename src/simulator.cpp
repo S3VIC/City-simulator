@@ -1,9 +1,11 @@
-#include "simulator.h"
+#include "../include/simulator.h"
 
-Simulator::Simulator(){
-  this->evolutionsNum = 0;
-}
+// Contstructor, defaults number of evolutions to 0;
+Simulator::Simulator() : evolutionsNum(0) 
+{}
 
+// Creates Interface instance and takes first input from user which 
+// defines whether the simulation will begin or the program will be closed
 void Simulator::start(){
   Interface myInterface;
   
@@ -42,20 +44,30 @@ void Simulator::setCityParams(Interface *_myInterface, City *myCity){
   this->evolutionsNum = evolutions;
 }
 
+// takes each step required to fully proceed evolution process, and 
+// displays information about each step of evolution - its' number and
+// calculated city happiness
+void Simulator::proceedEvolution(City* _myCity, int &evolutionNumber){
+  printf("Evolution #%d:\n", evolutionNumber);
+  _myCity->evolve();
+  _myCity->resetCitizenHapp();
+  _myCity->calcTotCitizensHapp();
+  _myCity->calcCityHapp();
+  int happ = _myCity->getCityHapp();
+  printf("Happiness level: %d\n", happ);
+}
+
+// initializes city and if needed handles calls for evolution process
 void Simulator::beginSimulation(City* _myCity, Interface* _myInterface){
   _myCity->populateCity();
   _myCity->calcTotCitizensHapp();
   _myCity->calcCityHapp();
 
-  for(int i = 0; i < this->evolutionsNum; i++){
-    printf("Evolution #%d:\n", i+1);
-    _myCity->evolve();
-    _myCity->resetCitizenHapp();
-    _myCity->calcTotCitizensHapp();
-    _myCity->calcCityHapp();
-    int happ = _myCity->getCityHapp();
-    printf("Happiness level: %d\n", happ);
-  }
+  printf("Initial city happiness: %d\n", _myCity->getCityHapp());
+
+  for(int i = 1; i <= this->evolutionsNum; i++)
+    this->proceedEvolution(_myCity, i);
 }
 
+// destructor
 Simulator::~Simulator(){}
