@@ -8,11 +8,12 @@ Simulator::Simulator() : evolutionsNum(0)
 
 // Creates Interface instance and takes first input from user which 
 // defines whether the simulation will begin or the program will be closed
-void Simulator::start(){
+void Simulator::start()
+{
   Interface myInterface;
   
   int decision = 0; 
-  myInterface.initialDecision(&decision);
+  myInterface.initialDecision(decision);
   if(decision == 1)
   {
     City myCity = City(" ");
@@ -21,10 +22,10 @@ void Simulator::start(){
   }
   else if(decision == 2)
     exit(0);
-  
 }
 
-void Simulator::setCityParams(Interface *_myInterface, City *_myCity){
+void Simulator::setCityParams(Interface *_myInterface, City *_myCity)
+{
   _myInterface->cityNameMessage();
   std::string cityName = " ";
   std::cin >> cityName;
@@ -49,7 +50,8 @@ void Simulator::setCityParams(Interface *_myInterface, City *_myCity){
 // takes each step required to fully proceed evolution process, and 
 // displays information about each step of evolution - its' number and
 // calculated city happiness
-void Simulator::proceedEvolution(City *_myCity, int &evolutionNumber){
+void Simulator::proceedEvolution(City *_myCity, int &evolutionNumber)
+{
   printf("Evolution #%d:\n", evolutionNumber);
   _myCity->evolve();
   _myCity->resetCitizenHapp();
@@ -60,15 +62,25 @@ void Simulator::proceedEvolution(City *_myCity, int &evolutionNumber){
 }
 
 // initializes city and if needed handles calls for evolution process
-void Simulator::beginSimulation(City *_myCity, Interface *_myInterface){
-  _myCity->populateCity();
-  _myCity->calcTotCitizensHapp();
-  _myCity->calcCityHapp();
-
-  printf("Initial city happiness: %d\n", _myCity->getCityHapp());
-
-  for(int i = 1; i <= this->evolutionsNum; i++)
-    this->proceedEvolution(_myCity, i);
+void Simulator::beginSimulation(City *_myCity, Interface *_myInterface)
+{ 
+  int decision = 0;
+  decision = _myInterface->plottingDecision();
+  switch(decision)
+  {
+    case 1:
+      simulateWithFullPlotting(_myCity);
+      break;
+    case 2: 
+      simulateWithPartialPlotting(_myCity);
+      break;
+    case 3: 
+      simulateWithoutPlotting(_myCity);
+      break;
+    default: 
+      printf("Wrong choice!");
+      exit(0);
+  }  
 }
 
 void Simulator::saveToFile(City &myCity)
@@ -110,5 +122,50 @@ void Simulator::plotData()
   }
 }
 
+void Simulator::simulateWithFullPlotting(City *myCity)
+{
+  myCity->populateCity();
+  myCity->calcTotCitizensHapp();
+  myCity->calcCityHapp();
+  printf("Initial city happiness: %d\n", myCity->getCityHapp());
+  saveToFile(*myCity);
+  plotData();
+  
+  for(int i = 1; i <= this->evolutionsNum; i++)
+  {  
+    this->proceedEvolution(myCity, i);
+    saveToFile(*myCity);
+    plotData();
+  }
+}
+
+void Simulator::simulateWithPartialPlotting(City *myCity)
+{
+  myCity->populateCity();
+  myCity->calcTotCitizensHapp();
+  myCity->calcCityHapp();
+  printf("Initial city happiness: %d\n", myCity->getCityHapp());
+  saveToFile(*myCity);
+  plotData();
+
+  for(int i = 1; i <= this->evolutionsNum; i++)
+    this->proceedEvolution(myCity, i);
+    
+  saveToFile(*myCity);
+  plotData();
+}
+
+void Simulator::simulateWithoutPlotting(City *myCity)
+{
+  myCity->populateCity();
+  myCity->calcTotCitizensHapp();
+  myCity->calcCityHapp();
+  printf("Initial city happiness: %d\n", myCity->getCityHapp());
+
+  for(int i = 1; i <= this->evolutionsNum; i++)
+    this->proceedEvolution(myCity, i);
+}
+
 // destructor
-Simulator::~Simulator(){}
+Simulator::~Simulator()
+{}

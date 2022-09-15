@@ -38,12 +38,12 @@ void City::calcSinglCitizenHapp(Citizen& k1, Citizen& k2){
   // Wyznaczenie odlgelosci pomiedzy  kibicami
   double dystans = pow(k2Cord[0] - k1Cord[0], 2) - pow(k2Cord[1] - k1Cord[1], 2);
   // Sprawdzanie odleglosci pomiedzy kibicami i decyzja o zwiekszeniu/zmniejszeniu poziomu zadowolenia
-  if(dystans <= 1 && k1.getColour() == k2.getColour()){
+  if(dystans <= 2 && k1.getColour() == k2.getColour()){
     k1.increaseHapp();
     k2.increaseHapp();
   }
   
-  else if (dystans <= 1 && k1.getColour() != k2.getColour()){
+  else if (dystans <= 2 && k1.getColour() != k2.getColour()){
     k1.decreaseHapp();
     k2.decreaseHapp();
   }
@@ -60,7 +60,8 @@ void City::calcTotCitizensHapp(){
 
 // Sumuje poziomy zadowolenia kibicow, a kolejno wyznacza srednia arytmetyczna
 // jako wskaznik ogolnego zadowolenia miasta
-void City::calcCityHapp(){
+void City::calcCityHapp()
+{
   
   if(this->cityHappiness != 0)
     this->cityHappiness = 0;
@@ -72,17 +73,20 @@ void City::calcCityHapp(){
 }
 
 // Returns city happiness
-int City::getCityHapp(){
+int City::getCityHapp()
+{
   return this->cityHappiness;
 }
 
 // Proceeds city evolution
-void City::evolve(){
+void City::evolve()
+{
   for(int i = 0; i < this->citizensNum; i++){
     // Checks whether citizen happiness is greater or equal 0.
     // If it does not match this condition the citizen is being moved 
     // in a random direction at a total distance of 1.
-    if(this->citizens[i].getHapp() <= 0){
+    if(this->citizens[i].getHapp() < 0)
+    {
       double kierunek = 2. * rand()/RAND_MAX * M_PI;
       this->citizens[i].changeX(cos(kierunek));
       this->citizens[i].changeY(sin(kierunek));
@@ -93,30 +97,37 @@ void City::evolve(){
 }
 
 // Przywraca zadowolenie kibicow do wartosci domyslnej - 0
-void City::resetCitizenHapp(){
+void City::resetCitizenHapp()
+{
   for(int i = 0; i < this->citizensNum; i++){
     this->citizens[i].resetHapp();
   }
 }
 
-int City::getCitizensNum(){
+int City::getCitizensNum()
+{
   return this->citizensNum;
 }
 
-std::vector<Citizen> City::getCitizens(){
+std::vector<Citizen> City::getCitizens()
+{
+
   return this->citizens;
 }
 // Setters 
-void City::setName(const std::string _cityName){
+void City::setName(const std::string _cityName)
+{
   this->cityName = _cityName;
 }
 
-void City::setCitizensNum(const int _citizensNum){
+void City::setCitizensNum(const int _citizensNum)
+{
   this->citizensNum = _citizensNum;
 }
 
-void City::setProcent(const double _procent){
+void City::setProcent(const double _procent)
+{
   this->procent = _procent;
 }
-City::~City(){
-}
+City::~City()
+{}

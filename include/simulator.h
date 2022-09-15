@@ -4,7 +4,8 @@
 #include "interface.h"
 #include <fstream>
 
-class Simulator{
+class Simulator
+{
   private:
     int evolutionsNum;
   
@@ -17,6 +18,9 @@ class Simulator{
     void setCityParams(Interface *myInterface, City *myCity);
     void saveToFile(City &myCity);
     void plotData();
+    void simulateWithFullPlotting(City *myCity);
+    void simulateWithPartialPlotting(City *myCity);
+    void simulateWithoutPlotting(City *myCity);
 
     // Setters
     void setEvolutionNum();

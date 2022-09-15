@@ -1,7 +1,8 @@
 #pragma once
 #include<iostream>
 
-class Interface{
+class Interface
+{
   
   public:
     Interface();
@@ -9,9 +10,8 @@ class Interface{
     void citizensNumMessage();
     void redPercentageMessage();
     void evolutionsNumMessage();
-  //void saveToFile(City& _city);
-  //void plotData();
     void displayWelcomeScreen();
-    void initialDecision(int *decision);
+    void initialDecision(int &decision);
+    int plottingDecision();
     ~Interface();
 };
