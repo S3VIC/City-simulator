@@ -1,11 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include "./include/simulator.h"
+#include "./include/city.h"
 
 int main()
 {
-  Simulator mySimulator;
-  mySimulator.start();   
   return 0;
 }

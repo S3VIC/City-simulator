@@ -10,7 +10,7 @@ class Citizen
 	
 	public:
 		Citizen();
-		Citizen(const char _type, const double _X, const double Y);
+		Citizen(const char& _type, const double& _X, const double& Y);
 		virtual ~Citizen();
 
 		//getters
@@ -20,13 +20,14 @@ class Citizen
 		const int getHapp();
 
 		//setters
-		void setX(const double _X);
-		void setY(const double _Y);
+		void setX(const double& _X);
+		void setY(const double& _Y);
+		void setCordinates(const double& _X, const double& _Y);
 
 		//modifiers
-		void increaseHapp();
-		void decreaseHapp();
-		void resetHapp();
-		void moveCitizen(const double _X, const double _Y)
+		void increaseHappiness();
+		void decreaseHappiness();
+		void resetHappiness();
+		void moveCitizen(const double& _X, const double& _Y);
 		
-}
+};
