@@ -39,7 +39,7 @@ void Citizen::increaseHapp()
 // decrements citizen happiness level
 void Citizen::decreaseHapp()
 {
-  this->happiness --;
+  this->happiness--;
 }
 
 // returns citizen happiness level
